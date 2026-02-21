@@ -225,55 +225,86 @@
       background: var(--color-white);
     }
 
-    .services-grid {
+    .services-list {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .service-item {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: 80px 1fr;
       gap: var(--space-md);
-    }
-
-    .service-card {
-      padding: var(--space-lg) var(--space-md);
-      background: var(--color-bg);
-      border: 1px solid var(--color-border);
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid var(--color-border);
+      align-items: start;
       transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
+      cursor: default;
     }
 
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 0;
-      background: var(--color-accent);
-      transition: height 0.4s ease;
+    .service-item:first-child {
+      border-top: 1px solid var(--color-border);
     }
 
-    .service-card:hover::before {
-      height: 100%;
+    .service-item:hover .service-num {
+      color: var(--color-accent);
     }
 
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    .service-item:hover .service-title {
+      letter-spacing: 0.12em;
     }
 
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: var(--space-sm);
-      display: block;
+    .service-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--color-border);
+      line-height: 1;
+      transition: color 0.4s ease;
+      padding-top: 4px;
     }
 
-    .service-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: var(--space-sm);
+    .service-body {
+      padding-top: 8px;
     }
 
-    .service-card p {
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 12px;
+      transition: letter-spacing 0.4s ease;
+      letter-spacing: 0.06em;
+    }
+
+    .service-desc {
       color: var(--color-text-muted);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 560px;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .service-tag {
+      font-size: 0.75rem;
+      color: var(--color-accent);
+      border: 1px solid var(--color-accent-light);
+      padding: 2px 10px;
+      letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 600px) {
+      .service-item {
+        grid-template-columns: 48px 1fr;
+        gap: 12px;
+      }
+      .service-num { font-size: 2rem; }
+      .service-title { font-size: 1.4rem; }
     }
 
     /* ========== About ========== */
@@ -476,23 +507,47 @@
         <h2>提供サービス</h2>
       </div>
       
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <span class="service-icon">◯</span>
-          <h3>AI / LLM 開発</h3>
-          <p>Claude API、RAGシステム、MCPサーバー連携など、最新のAI技術を活用したソリューションを構築します。</p>
+      <div class="services-list">
+        <div class="service-item fade-in">
+          <div class="service-num">01</div>
+          <div class="service-body">
+            <h3 class="service-title">AI / LLM 開発</h3>
+            <p class="service-desc">Claude APIを活用したRAGシステム、MCPサーバー連携、プロンプトエンジニアリングなど、最新のAI技術を実務に組み込みます。社内ドキュメント検索、自動応答、業務効率化など幅広いユースケースに対応します。</p>
+            <div class="service-tags">
+              <span class="service-tag">Claude API</span>
+              <span class="service-tag">RAG</span>
+              <span class="service-tag">MCP</span>
+              <span class="service-tag">Prompt Engineering</span>
+            </div>
+          </div>
         </div>
-        
-        <div class="service-card fade-in">
-          <span class="service-icon">△</span>
-          <h3>AWS クラウド構築</h3>
-          <p>Lambda、DynamoDB、API Gateway等を活用したサーバーレスアーキテクチャの設計・構築・運用を支援します。</p>
+
+        <div class="service-item fade-in">
+          <div class="service-num">02</div>
+          <div class="service-body">
+            <h3 class="service-title">AWS クラウド構築</h3>
+            <p class="service-desc">8年のAWS実務経験をもとに、サーバーレスアーキテクチャの設計から構築・運用まで一貫して支援します。初期費用を抑えながらスケールできる構成を提案します。</p>
+            <div class="service-tags">
+              <span class="service-tag">Lambda</span>
+              <span class="service-tag">DynamoDB</span>
+              <span class="service-tag">API Gateway</span>
+              <span class="service-tag">Terraform</span>
+            </div>
+          </div>
         </div>
-        
-        <div class="service-card fade-in">
-          <span class="service-icon">□</span>
-          <h3>Web アプリ開発</h3>
-          <p>React / Next.js によるモダンなフロントエンドから、バックエンドAPIまで一貫して開発します。</p>
+
+        <div class="service-item fade-in">
+          <div class="service-num">03</div>
+          <div class="service-body">
+            <h3 class="service-title">Web アプリ開発</h3>
+            <p class="service-desc">React / Next.js によるフロントエンドから、バックエンドAPIまで一貫して開発します。業務システム、予約管理、顧客管理など、現場の課題に合わせたシステムを構築します。</p>
+            <div class="service-tags">
+              <span class="service-tag">React</span>
+              <span class="service-tag">Next.js</span>
+              <span class="service-tag">TypeScript</span>
+              <span class="service-tag">Node.js</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
